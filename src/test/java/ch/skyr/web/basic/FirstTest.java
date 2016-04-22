@@ -13,4 +13,10 @@ public class FirstTest {
     public void test_always_success() {
         Assert.assertThat("result", CoreMatchers.equalTo("result"));
     }
+
+    @Test
+    public void test_always_fails() {
+        Assert.assertThat("actual result", CoreMatchers.equalTo("expected result"));
+    }
+
 }
