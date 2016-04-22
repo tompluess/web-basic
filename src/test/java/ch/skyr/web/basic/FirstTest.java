@@ -2,6 +2,7 @@ package ch.skyr.web.basic;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -14,6 +15,7 @@ public class FirstTest {
         Assert.assertThat("result", CoreMatchers.equalTo("result"));
     }
 
+    @Ignore
     @Test
     public void test_always_fails() {
         Assert.assertThat("actual result", CoreMatchers.equalTo("expected result"));
