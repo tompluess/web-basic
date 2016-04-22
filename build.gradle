@@ -1,3 +1,15 @@
+import org.apache.commons.net.ftp.FTPClient
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'commons-net:commons-net:3.4'
+    }
+}
+
 group 'ch.skyr.web'
 version '1.0-SNAPSHOT'
 
@@ -11,4 +23,17 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+task upload << {
+    new FTPClient().with {
+        connect "$System.env.FTP_HOST"
+        login "$System.env.FTP_USER", "$System.env.FTP_PASS"
+        makeDirectory "subdir"
+        changeWorkingDirectory "subdir"
+        def file = new FileInputStream("hello.txt")
+        storeFile "test.file", file
+        disconnect()
+    }
 }
